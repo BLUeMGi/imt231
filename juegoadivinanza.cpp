@@ -37,6 +37,8 @@ int main() {
 
     cout << "Finalizó el juego" << endl;
     cout << "Adivinaste el número secreto en " << intentos << " intentos." << endl;
+    cout.precision(2);
+    cout << fixed;
     cout << "Tu puntuación fue de " << puntos << " puntos" << endl;
 
     return 0;
