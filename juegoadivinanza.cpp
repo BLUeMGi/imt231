@@ -19,7 +19,7 @@ int main() {
         cout << "Tentativa " << intentos << endl;
         cout << "¿Cuál es el número? ";
         cin >> adivina;
-        double puntos_perdidos = abs(adivina - NUMERO_SECRETO) / 2;
+        double puntos_perdidos = abs(adivina - NUMERO_SECRETO) / 2.0;
         puntos -= puntos_perdidos;
         cout << "El valor de su número es: " << adivina << endl;
         bool acerto = adivina == NUMERO_SECRETO;
