@@ -2,28 +2,30 @@
 using namespace std;
 
 int main() {
-    cout << "*****************************************" << endl;
+    cout << "**************" << endl;
     cout << "* Bienvenido al Juego de la Adivinanza! *" << endl;
-    cout << "*****************************************" << endl;
+    cout << "**************" << endl;
 
     const int NUMERO_SECRETO = 42;
     int adivina;
-    bool acerto, mayor;
+    bool no_acerto = true;
 
-    cout << "¿Cuál es el número? ";
-    cin >> adivina;
+    while (no_acerto) {
+        cout << "¿Cuál es el número? ";
+        cin >> adivina;
+        cout << "El valor de su número es: " << adivina << endl;
 
-    acerto = adivina == NUMERO_SECRETO;
-    mayor = adivina > NUMERO_SECRETO;
+        bool acerto = adivina == NUMERO_SECRETO;
+        bool mayor = adivina > NUMERO_SECRETO;
 
-    cout << "El valor de su número es: " << adivina << endl;
-
-    if (acerto) {
-        cout << "¡Felicitaciones! Adivinaste el número secreto." << endl;
-    } else if (mayor) {
-        cout << "El número ingresado es mayor que el número secreto." << endl;
-    } else {
-        cout << "El número ingresado es menor que el número secreto." << endl;
+        if (acerto) {
+            cout << "¡Felicitaciones! Adivinaste el número secreto." << endl;
+            no_acerto = false;
+        } else if (mayor) {
+            cout << "El número ingresado es mayor que el número secreto." << endl;
+        } else {
+            cout << "El número ingresado es menor que el número secreto." << endl;
+        }
     }
 
     return 0;
