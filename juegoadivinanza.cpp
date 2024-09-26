@@ -1,18 +1,27 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 int main() {
-    cout << "***********************************" << endl;
-    cout << "* Bienvenido al Juego de la Adivinanza! *" << endl;
-    cout << "***********************************" << endl;
-
-    int numero_secreto = 42;
-    cout << "El número secreto es ..." << numero_secreto << ". No lo diga a para nadie!" << endl;
-
+    int secreto = 42; // Número secreto del juego de Adivinanza
     int adivina;
-    cout << "¿Cuál es el número? ";
+    cout << "***************************************" << endl;
+    cout << "Bienvenido al Juego de Adivinanza!" << endl;
+    cout << "***************************************" << endl;
+    cout << "Adivina el número secreto: ";
     cin >> adivina;
-    cout << "El valor de su número es: " << adivina << endl;
+
+    if (adivina == secreto){
+        cout << "Felicidades!! Adivinó el número secreto" << endl;
+    }
+    else if (adivina > secreto){
+        cout << "El número ingresado es mayor que el número secreto" << endl;
+    }
+    else {
+        cout << "El número ingresado es menor que el número secreto" << endl;
+    }
+    return 0;
 }
+
 
 
