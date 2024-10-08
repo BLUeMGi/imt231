@@ -1,29 +1,36 @@
 #include <iostream>
-#include <cmath>
-
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
-const int NUMERO_SECRETO = 42;
-int adivina;
-bool no_acerto = true;
-int intentos = 0;
-double puntos = 1000.0;
-
 int main() {
-    cout << "********************************************" << endl;
-    cout << "** Bienvenido al Juego de la Adivinanza! **" << endl;
-    cout << "********************************************" << endl;
+    cout << "" << endl;
+    cout << "¡Bienvenido al JUEGO de la adivinanza!" << endl;
+    cout << "Ingrese un número del rango: 1 a 100 *" << endl;
+    cout << "*" << endl;
+
+    // Iniciar la semilla para generar números aleatorios
+    srand(time(0));
+    const int numero_secreto = 1 + rand() % 100; // Generar número aleatorio entre 1 y 100
+    cout << "Número secreto aleatorio generado entre 1 y 100: " << numero_secreto << endl;
+
+    int adivina;
+    int intentos = 0;
+    double puntos = 1000.0; // Guarda los puntos ganados
+    bool no_acerto = true;
 
     while (no_acerto) {
         intentos++;
         cout << "Tentativa " << intentos << endl;
         cout << "¿Cuál es el número? ";
         cin >> adivina;
-        double puntos_perdidos = abs(adivina - NUMERO_SECRETO) / 2.0;
-        puntos -= puntos_perdidos;
-        cout << "El valor de su número es: " << adivina << endl;
-        bool acerto = adivina == NUMERO_SECRETO;
-        bool mayor = adivina > NUMERO_SECRETO;
+
+        double puntos_perdidos = abs(adivina - numero_secreto) / 2.0;
+        puntos = puntos - puntos_perdidos;
+        cout << "El valor del número es: " << adivina << endl;
+
+        bool acerto = adivina == numero_secreto;
+        bool mayor = adivina > numero_secreto;
 
         if (acerto) {
             cout << "¡Felicitaciones! Adivinaste el número secreto" << endl;
@@ -39,14 +46,7 @@ int main() {
     cout << "Adivinaste el número secreto en " << intentos << " intentos." << endl;
     cout.precision(2);
     cout << fixed;
-    cout << "Tu puntuación fue de " << puntos << " puntos" << endl;
+    cout << "Tu puntuación fue de " << puntos << " puntos." << endl;
 
     return 0;
 }
-
-
-
-
-
-
-
