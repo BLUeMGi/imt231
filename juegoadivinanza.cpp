@@ -1,52 +1,81 @@
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
 using namespace std;
 
-int main() {
-    cout << "" << endl;
-    cout << "¡Bienvenido al JUEGO de la adivinanza!" << endl;
-    cout << "Ingrese un número del rango: 1 a 100 *" << endl;
-    cout << "*" << endl;
+int main(){
+cout<<""<<endl;
+cout<<" Bienvenido al Juego de la Adivinanza!"<<endl;
+cout<<"Ingrese un número en el rango: 1 a 100"<<endl;
+cout<<""<<endl;
 
-    // Iniciar la semilla para generar números aleatorios
-    srand(time(0));
-    const int numero_secreto = 1 + rand() % 100; // Generar número aleatorio entre 1 y 100
-    cout << "Número secreto aleatorio generado entre 1 y 100: " << numero_secreto << endl;
+cout<<endl;
+cout<<"Elija el nível de dificultad"<<endl;
+cout<<"Fácil (F), Medio (M) o Difícil (D)"<<endl;
 
-    int adivina;
-    int intentos = 0;
-    double puntos = 1000.0; // Guarda los puntos ganados
-    bool no_acerto = true;
+char dificultad;
+cin>>dificultad;
+int numero_tentativas;
 
-    while (no_acerto) {
-        intentos++;
-        cout << "Tentativa " << intentos << endl;
-        cout << "¿Cuál es el número? ";
-        cin >> adivina;
+if(dificultad=='F'){
+    numero_tentativas=15;
+}
+else if(dificultad=='M'){
+    numero_tentativas=10;
+}
+else {
+    numero_tentativas=5;
+}
 
-        double puntos_perdidos = abs(adivina - numero_secreto) / 2.0;
-        puntos = puntos - puntos_perdidos;
-        cout << "El valor del número es: " << adivina << endl;
+srand(time(0));
+const int NUMERO_SECRETO=1+rand()%100;
+cout<<endl;
+cout<<"Número secreto aleatorio generado entre 1 y 100: "<<NUMERO_SECRETO<<endl;
+cout<<endl;
+int adivina, intentos=1;
+bool no_acerto=true;
+double puntos=1000.0;
 
-        bool acerto = adivina == numero_secreto;
-        bool mayor = adivina > numero_secreto;
+for (intentos;intentos<=numero_tentativas;intentos++){
+    cout<<endl;
+	cout<<"Tentativa "<<intentos<<endl;
+	cout<<"Cuál es el número? ";
+	cin>>adivina;
 
-        if (acerto) {
-            cout << "¡Felicitaciones! Adivinaste el número secreto" << endl;
-            no_acerto = false;
-        } else if (mayor) {
-            cout << "El número ingresado es mayor que el número secreto" << endl;
-        } else {
-            cout << "El número ingresado es menor que el número secreto" << endl;
-        }
-    }
+	double puntos_perdidos=abs(adivina-NUMERO_SECRETO)/2.0;
+	puntos=puntos-puntos_perdidos;
 
-    cout << "Finalizó el juego" << endl;
-    cout << "Adivinaste el número secreto en " << intentos << " intentos." << endl;
+	cout<<"El valor de su número es: "<<adivina<<endl;
+
+	bool acerto=adivina==NUMERO_SECRETO;
+	bool mayor=adivina>NUMERO_SECRETO;
+
+	if(acerto){
+		cout<<"Felicitaciones!!! Adivinaste el número secreto!"<<endl;
+		no_acerto=false;
+		break;
+	}
+
+	else if(mayor){
+		cout<<"El número ingresado es mayor que el número secreto"<<endl;
+	}
+
+	else{
+		cout<<"El número ingresado es menor que el número secreto"<<endl;
+	}
+}
+cout<<endl;
+cout<<""<<endl;
+cout<<"FIN DE JUEGO"<<endl;
+cout<<""<<endl;
+if(no_acerto==false){
+    cout<<"Ganaste con "<<intentos-1<<" intentos"<<endl;
     cout.precision(2);
-    cout << fixed;
-    cout << "Tu puntuación fue de " << puntos << " puntos." << endl;
-
-    return 0;
+    cout<<fixed;
+    cout<<"Su puntuación fue de "<<puntos<<" puntos"<<endl;
+}
+else{
+    puntos=0;
+    cout<<"Perdiste tras "<<intentos-1<<" intentos"<<endl;
+    cout<<"Tu puntuación fue de "<<puntos<<" puntos"<<endl;
+}
 }
